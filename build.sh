@@ -3,8 +3,10 @@ install_location="${PREFIX}/opt/auto/07p"
 buildroot="${PWD}"
 cd 07p
 
+OPT_FLAGS="-std=legacy -O"
+
 ./configure \
-    --with-optimization-flags=-std=legacy \
+    --with-optimization-flags="${OPT_FLAGS}" \
     --prefix="${install_location}"
 
 # * The Fortran flag -std=legacy has to be specified to workaround the
