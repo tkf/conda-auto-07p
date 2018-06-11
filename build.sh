@@ -15,6 +15,9 @@ cd 07p
 #
 # * The option --prefix is passed anyway even though there is no "make
 #   install" target.  It may be used somewhere in the code (see AUR).
+#
+# Some ideas are taken from AUR:
+# https://aur.archlinux.org/packages/auto-07p
 
 make
 
@@ -29,12 +32,11 @@ mkdir --verbose --parents "${activate_dir}"
 cp --verbose --target-directory="${activate_dir}" \
    "${RECIPE_DIR}/activate-auto.sh"
 
+# Install auto-shim/auto.py as a proper Python package so that
+# standard import "works":
 cd "${buildroot}"
 cp --verbose --recursive "${RECIPE_DIR}/auto-shim" .
 cd auto-shim
 "${PYTHON}" setup.py install \
     --single-version-externally-managed --record=record.txt
 # https://conda.io/docs/user-guide/tutorials/build-pkgs.html
-
-# Some ideas are taken from AUR:
-# https://aur.archlinux.org/packages/auto-07p
