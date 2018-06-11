@@ -21,11 +21,6 @@ requirements:
     # python/demo2.auto didn't work with numpy 1.7.1
     - numpy <=1.6.99999
 
-    # IPython is not a requirement but AUTO works only with some
-    # ancient versions (https://aur.archlinux.org/packages/auto-07p).
-    # So it's safer to install it here to bound the version.
-    - ipython <5
-
 build:
   # Disable binary relocation.  It probably is not necessary (I could
   # run a dmoe without it) but I don't want magics of AUTO and conda
