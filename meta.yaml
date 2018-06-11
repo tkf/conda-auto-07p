@@ -14,7 +14,7 @@ requirements:
   # TODO: maybe add compilers
 
   run:
-    - python >=2.4,<3  # likely 3.x won't work...
+    - python >=2.4
 
     - matplotlib <2  # auto.pdf says 0.99 or higher is recommended
 

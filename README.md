@@ -8,7 +8,7 @@ Example usage:
 git clone https://github.com/tkf/conda-auto-07p
 cd conda-auto-07p
 conda build .
-conda create --name auto-07p --use-local auto-07p
+conda create --name auto-07p --use-local python=2 auto-07p
 source activate auto-07p
 auto $AUTO_DIR/demos/python/demo2.auto
 ```

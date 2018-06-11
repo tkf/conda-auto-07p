@@ -19,7 +19,7 @@ install:
 
 script:
   - conda build --test .
-  - conda create -q -n test-environment --use-local auto-07p
+  - conda create -q -n test-environment --use-local python=2 auto-07p
   - source activate test-environment
   - conda list --export
   - which auto
