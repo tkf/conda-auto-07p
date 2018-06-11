@@ -2,6 +2,9 @@
 
 set -ex
 
+env | grep CONDA
+conda list --export
+
 cp -r "${AUTO_DIR}/demos" .
 
 (cd demos/ab; auto ab.auto)

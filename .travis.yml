@@ -23,6 +23,7 @@ script:
   - source activate test-environment
   - conda list --export
   - which auto
+  - ./run_test.sh
 
 notifications:
   email: false
