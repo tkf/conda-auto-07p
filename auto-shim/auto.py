@@ -2,18 +2,24 @@ import os
 import sys
 
 
-def _guess_conda_prefix():
+def _conda_prefix_candidates():
     try:
-        return os.environ['CONDA_PREFIX']
+        yield os.environ['CONDA_PREFIX']
     except KeyError:
-        # Assume:
-        # this_file = ${CONDA_PREFIX}/lib/python2.7/site-packages/auto.py'
-        this_file = os.path.abspath(__file__)
+        pass
 
-        CONDA_PREFIX = this_file
-        for _ in range(4):
-            CONDA_PREFIX = os.path.dirname(CONDA_PREFIX)
-    return CONDA_PREFIX
+    # Assume:
+    # this_file = ${CONDA_PREFIX}/lib/python2.7/site-packages/auto.py'
+    this_file = os.path.abspath(__file__)
+
+    CONDA_PREFIX = this_file
+    for _ in range(4):
+        CONDA_PREFIX = os.path.dirname(CONDA_PREFIX)
+    yield CONDA_PREFIX
+
+    # Assume:
+    # sys.executable = ${CONDA_PREFIX}/bin/python
+    yield os.path.dirname(os.path.dirname(sys.executable))
 
 
 def _guess_auto_dir():
@@ -22,8 +28,13 @@ def _guess_auto_dir():
     except KeyError:
         pass
 
-    CONDA_PREFIX = _guess_conda_prefix()
-    return os.path.join(CONDA_PREFIX, 'opt', 'auto', '07p')
+    for CONDA_PREFIX in _conda_prefix_candidates():
+        # See: [[../build.sh::/opt/auto/07p]]
+        AUTO_DIR = os.path.join(CONDA_PREFIX, 'opt', 'auto', '07p')
+        if os.path.exists(AUTO_DIR):
+            return AUTO_DIR
+
+    raise RuntimeError('Cannot determine $AUTO_DIR')
 
 
 def _guess_auto_python_dir():
