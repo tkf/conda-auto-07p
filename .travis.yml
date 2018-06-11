@@ -23,5 +23,14 @@ script:
   - conda list --export
   - which auto
 
+  # Run a few demos
+  - cp -r $AUTO_DIR/demos .
+  - (cd demos/ab; auto ab.auto)
+  - (cd demos/abc; auto abc.auto)
+  - for path in demos/python/demo*.auto; do
+      echo $path;
+      auto $path;
+    done
+
 notifications:
   email: false
