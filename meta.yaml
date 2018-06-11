@@ -19,5 +19,11 @@ requirements:
     # So it's safer to install it here to bound the version.
     - ipython <5
 
+build:
+  # Disable binary relocation.  It probably is not necessary (I could
+  # run a dmoe without it) but I don't want magics of AUTO and conda
+  # to be mixed at the moment.
+  binary_relocation: False
+
 about:
   home: http://cmvl.cs.concordia.ca/auto
