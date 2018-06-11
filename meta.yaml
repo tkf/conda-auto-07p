@@ -8,7 +8,11 @@ source:
   sha256: 8f306751521a491113f89ffbd8b20b68d72aeac42833fa196f2158f3bef35bca
 
 requirements:
-  # TODO: specify build requirements
+  build:
+    - python
+    - setuptools
+  # TODO: maybe add compilers
+
   run:
     - python >=2.4,<3  # likely 3.x won't work...
 

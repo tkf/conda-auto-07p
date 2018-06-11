@@ -1,5 +1,6 @@
 install_location="${PREFIX}/opt/auto/07p"
 
+buildroot="${PWD}"
 cd 07p
 
 ./configure \
@@ -27,6 +28,13 @@ activate_dir="${PREFIX}/etc/conda/activate.d"
 mkdir --verbose --parents "${activate_dir}"
 cp --verbose --target-directory="${activate_dir}" \
    "${RECIPE_DIR}/activate-auto.sh"
+
+cd "${buildroot}"
+cp --verbose --recursive "${RECIPE_DIR}/auto-shim" .
+cd auto-shim
+"${PYTHON}" setup.py install \
+    --single-version-externally-managed --record=record.txt
+# https://conda.io/docs/user-guide/tutorials/build-pkgs.html
 
 # Some ideas are taken from AUR:
 # https://aur.archlinux.org/packages/auto-07p
