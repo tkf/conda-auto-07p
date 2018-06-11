@@ -1,0 +1,11 @@
+package:
+  name: auto-07p
+  version: 0.9.1
+
+source:
+  fn: auto07p-0.9.1.tar.gz
+  url: http://sourceforge.net/projects/auto-07p/files/auto07p/0.9/auto07p-0.9.1.tar.gz
+  sha256: 8f306751521a491113f89ffbd8b20b68d72aeac42833fa196f2158f3bef35bca
+
+about:
+  home: http://cmvl.cs.concordia.ca/auto
