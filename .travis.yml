@@ -23,6 +23,7 @@ script:
   - source activate test-environment
   - conda list --export
   - which auto
+  - PYTHONPATH=$AUTO_DIR/python python -c 'import graphics.grapher_mpl'
   - python run_test.py
 
 notifications:
