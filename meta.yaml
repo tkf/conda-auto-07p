@@ -7,5 +7,17 @@ source:
   url: http://sourceforge.net/projects/auto-07p/files/auto07p/0.9/auto07p-0.9.1.tar.gz
   sha256: 8f306751521a491113f89ffbd8b20b68d72aeac42833fa196f2158f3bef35bca
 
+requirements:
+  # TODO: specify build requirements
+  run:
+    - python >=2.4,<3  # likely 3.x won't work...
+
+    - matplotlib <2  # auto.pdf says 0.99 or higher is recommended
+
+    # IPython is not a requirement but AUTO works only with some
+    # ancient versions (https://aur.archlinux.org/packages/auto-07p).
+    # So it's safer to install it here to bound the version.
+    - ipython <5
+
 about:
   home: http://cmvl.cs.concordia.ca/auto
