@@ -15,13 +15,15 @@ install:
   - conda info -a
 
   - conda install -q conda-build
+  - conda build --no-test .
 
 script:
-  - conda build .
+  - conda build --test .
   - conda create -q -n test-environment --use-local auto-07p
   - source activate test-environment
   - conda list --export
   - which auto
+  - python run_test.py
 
 notifications:
   email: false
