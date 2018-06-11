@@ -22,6 +22,17 @@ except ImportError:
     sys.path.insert(0, os.path.join(os.environ['AUTO_DIR'], 'python'))
     import auto
 
+class NonExistingError(Exception):
+    pass
+
+try:
+    from Tkinter import TclError
+except ImportError:
+    try:
+        from tkinter import TclError
+    except ImportError:
+        TclError = NonExistingError
+
 PYTHON_DEMO = os.path.join(os.environ['AUTO_DIR'], 'demos', 'python')
 
 
@@ -61,7 +72,12 @@ def test_smoke():
         for name in glob.glob(os.path.join(PYTHON_DEMO, 'demo*.auto')):
             six.print_()
             six.print_('Run:', name)
-            rundemo(name)
+            try:
+                rundemo(name)
+            except TclError:
+                # Assuming that it is thrown plot at the end of demo.
+                traceback.print_exc()
+                print('Ignoring...')
 
 
 if __name__ == '__main__':
