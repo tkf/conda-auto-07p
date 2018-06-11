@@ -1,11 +1,15 @@
 language: generic
 
+env:
+  - MINICONDA_VER=2
+  - MINICONDA_VER=3 BUILD_OPTS='--exclusive-config-file python36.yaml'
+
 # Based on:
 # https://conda.io/docs/user-guide/tasks/use-conda-with-travis-ci.html
 install:
   - sudo apt-get update
   - sudo apt-get install -qq build-essential gfortran
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - wget https://repo.continuum.io/miniconda/Miniconda${MINICONDA_VER}-latest-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
@@ -15,11 +19,11 @@ install:
   - conda info -a
 
   - conda install -q conda-build
-  - conda build --no-test .
+  - conda build --no-test $BUILD_OPTS .
 
 script:
-  - conda build --test .
-  - conda create -q -n test-environment --use-local python=2 auto-07p
+  - conda build --test $BUILD_OPTS .
+  - conda create -q -n test-environment --use-local python=$MINICONDA_VER auto-07p
   - source activate test-environment
   - conda list --export
   - which auto
