@@ -21,5 +21,12 @@ make
 mkdir --verbose --parents "${install_location}"
 cp --verbose --archive --target-directory="${install_location}" .
 
+# Install AUTO environment variable setup script:
+# https://conda.io/docs/user-guide/tasks/manage-environments.html#macos-and-linux
+activate_dir="${PREFIX}/etc/conda/activate.d"
+mkdir --verbose --parents "${activate_dir}"
+cp --verbose --target-directory="${activate_dir}" \
+   "${RECIPE_DIR}/activate-auto.sh"
+
 # Some ideas are taken from AUR:
 # https://aur.archlinux.org/packages/auto-07p
