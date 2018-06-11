@@ -65,5 +65,7 @@ def test_smoke():
 
 
 if __name__ == '__main__':
+    import matplotlib
+    matplotlib.use('agg')
     test_smoke()
     print('****** SUCCESS ******')
