@@ -3,7 +3,15 @@ language: generic
 env:
   - EXTRA_PACKAGES=
     GRAPHER_FAIL=true
+  - EXTRA_PACKAGES="tk=8.5 matplotlib=1.5.3"
+    GRAPHER_FAIL=false
+  - EXTRA_PACKAGES="tk=8.5 matplotlib=1.4.3"
+    GRAPHER_FAIL=false
   - EXTRA_PACKAGES="tk=8.5 matplotlib=1.3.1"
+    GRAPHER_FAIL=false
+  - EXTRA_PACKAGES="tk=8.6 matplotlib=1.5.3"
+    GRAPHER_FAIL=false
+  - EXTRA_PACKAGES="tk=8.6 matplotlib=1.4.3"
     GRAPHER_FAIL=false
 
 # Based on:
