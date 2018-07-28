@@ -38,6 +38,9 @@ PYTHON_DEMO = os.path.join(os.environ['AUTO_DIR'], 'demos', 'python')
 
 @contextmanager
 def nowait():
+    """
+    Replace stdin to emulate a user hitting RET all the time.
+    """
     true_stdin = sys.stdin
     proc = subprocess.Popen(['yes'], stdout=subprocess.PIPE)
     try:
@@ -75,7 +78,7 @@ def test_smoke():
             try:
                 rundemo(name)
             except TclError:
-                # Assuming that it is thrown plot at the end of demo.
+                # Assuming that it is thrown in plot at the end of demo.
                 traceback.print_exc()
                 print('Ignoring...')
 
